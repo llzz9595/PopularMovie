@@ -27,7 +27,7 @@ public class ImageAdapter extends BaseAdapter {
         this.urls  = urls;
     }
     public int getCount() {
-        return 0;
+        return urls.size();
     }
 
     @Override
@@ -45,11 +45,24 @@ public class ImageAdapter extends BaseAdapter {
         ImageView imageView = new ImageView(context);
 
 //        设置placeholder和 error image
-        Picasso.with(context).load(urls.get(position)).placeholder(R.drawable.image_palceholer).error(R.mipmap.ic_launcher).into(imageView);
-
+        Picasso.with(context).load(urls.get(position))
+                .resize(200,250)
+                .placeholder(R.drawable.image_palceholer).error(R.mipmap.ic_launcher).into(imageView);
+        Picasso.Builder builder = new Picasso.Builder(parent.getContext());
+//        builder.listener(new Picasso.Listener() {
+//            @Override
+//            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
+//                Log.d("", "error---------------");
+//                exception.printStackTrace();
+//            }
+//        });
+//        builder.build()
+//
+//                .load(urls.get(position)).into(imageView);
         //设置网格中显示imageView的属性
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new GridView.LayoutParams(280, 280));
+
+        imageView.setLayoutParams(new GridView.LayoutParams(200, 300));
 
         return imageView;
 

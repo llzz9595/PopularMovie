@@ -1,7 +1,7 @@
 package com.app.android.popularmovie;
 
 import android.app.Activity;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,27 +20,18 @@ public class MainActivity extends Activity {
         ImageView imageView = (ImageView) findViewById(R.id.full_image);
 
         //获取传递过来的imageUrl，并将image显示出来，注意设置placeholer
-     //   Intent intent = getIntent();
-       // String imageUrl = intent.getExtras().getString("imageUrl");
+        Intent intent = getIntent();
+        String imageUrl = intent.getExtras().getString("imageUrl");
 //        Picasso.with(MainActivity.this).load(R.drawable.image_palceholer).into(imageView);
        // Picasso.with(MainActivity.this).load().placeholder(R.drawable.image_palceholer).error(R.mipmap.ic_launcher).into(imageView);
 
-        Picasso.with(MainActivity.this).load("http://i.imgur.com/DvpvklR.png")
+        Picasso.with(MainActivity.this).load(imageUrl)
                 .placeholder(R.drawable.image_palceholer)
-                .resize(20,20)
+               .resize(400,600)
                 .error(R.mipmap.ic_launcher)
                .into(imageView);
 
-        Picasso.Builder builder = new Picasso.Builder(this);
-        builder.listener(new Picasso.Listener()
-        {
-            @Override
-            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
-            {
-                exception.printStackTrace();
-            }
-        });
-        builder.build().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+
 
     }
 
