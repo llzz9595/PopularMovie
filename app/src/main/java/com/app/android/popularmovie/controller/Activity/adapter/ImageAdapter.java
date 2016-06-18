@@ -1,4 +1,4 @@
-package com.app.android.popularmovie.Adpater;
+package com.app.android.popularmovie.controller.Activity.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -46,7 +46,7 @@ public class ImageAdapter extends BaseAdapter {
 
 //        设置placeholder和 error image
         Picasso.with(context).load(urls.get(position))
-                .resize(200,250)
+
                 .placeholder(R.drawable.image_palceholer).error(R.mipmap.ic_launcher).into(imageView);
         Picasso.Builder builder = new Picasso.Builder(parent.getContext());
 //        builder.listener(new Picasso.Listener() {
